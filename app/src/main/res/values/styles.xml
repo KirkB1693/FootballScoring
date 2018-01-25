@@ -1,10 +1,66 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary theme color of the app (sets background color of app bar) -->
         <item name="colorPrimary">#1B5E20</item>
         <!-- Background color of buttons in the app -->
         <item name="colorButtonNormal">#1B5E20</item>
         <item name="android:textColor">#FFF9C4</item>
+    </style>
+    <style name="PickATeam.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/Pick_a_team_black1</item>
+        <item name="android:textColor">@color/Pick_a_team_white1</item>
+    </style>
+    <style name="WM.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/WM_green1</item>
+        <item name="android:textColor">@color/WM_gold1</item>
+    </style>
+    <style name="Albany.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/Albany_purple1</item>
+        <item name="android:textColor">@color/Albany_yellow1</item>
+    </style>
+    <style name="Delaware.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/delaware_blue</item>
+        <item name="android:textColor">@color/delaware_yellow</item>
+    </style>
+    <style name="Elon.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/elon_red</item>
+        <item name="android:textColor">@color/elon_gold</item>
+    </style>
+    <style name="JMU.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/jmu_purple</item>
+        <item name="android:textColor">@color/jmu_gold</item>
+    </style>
+    <style name="Maine.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/maine_black</item>
+        <item name="android:textColor">@color/maine_blue</item>
+    </style>
+    <style name="New_Hampshire.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/nh_blue</item>
+        <item name="android:textColor">@color/nh_gray</item>
+    </style>
+    <style name="Rhode_Island.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/ri_dark_blue</item>
+        <item name="android:textColor">@color/ri_light_blue</item>
+    </style>
+    <style name="Richmond.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/richmond_dark_blue</item>
+        <item name="android:textColor">@color/richmond_red</item>
+    </style>
+    <style name="Stony_Brook.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/sb_dark_blue</item>
+        <item name="android:textColor">@color/sb_gray</item>
+    </style>
+    <style name="Towson.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/towson_black</item>
+        <item name="android:textColor">@color/towson_yellow</item>
+    </style>
+    <style name="Villanova.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/villanova_dark_blue</item>
+        <item name="android:textColor">@color/villanova_light_blue</item>
+    </style>
+    <style name="SpinnerMenu" parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:textColor">@color/score_color</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

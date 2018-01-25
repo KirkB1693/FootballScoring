@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">Football Scoring</string>
+    <string name="team_1">Team A</string>
+    <string name="team_2">Team B</string>
+    <string name="initial_score">0</string>
+    <string name="touchdown">Touchdown (+6)</string>
+    <string name="extra_point">Extra Point (+1)</string>
+    <string name="field_goal">Field Goal (+3)</string>
+    <string name="safety">Safety (+2)</string>
+    <string name="reset_score">Reset Scores</string>
+    <string name="header">Scorekeeper</string>
+
+    <string name="team_prompt">Choose a team</string>
+    <string name="conversion">Two Point Conversion (+2)</string>
+
+    <string-array name="colleges_array">
+        <item>Pick a college</item>
+        <item>Albany</item>
+        <item>Delaware</item>
+        <item>Elon</item>
+        <item>James Madison</item>
+        <item>Maine</item>
+        <item>New Hampshire</item>
+        <item>Rhode Island</item>
+        <item>Richmond</item>
+        <item>Stony Brook</item>
+        <item>Towson</item>
+        <item>Villanova</item>
+        <item>William &amp; Mary</item>
+    </string-array>
+
 </resources>
+
