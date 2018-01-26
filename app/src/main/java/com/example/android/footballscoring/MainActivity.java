@@ -15,8 +15,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     Spinner collegeOneSpinner;
     Spinner collegeTwoSpinner;
+    View teamABackgroundView;
+    View teamBBackgroundView;
+    TextView teamAScoreView;
+    TextView teamBScoreView;
+    ImageView teamALogoView;
+    ImageView teamBLogoView;
+    Button teamATouchdownView;
+    Button teamAExtraPointView;
+    Button teamAConversionView;
+    Button teamAFieldGoalView;
+    Button teamASafetyView;
+    Button teamBTouchdownView;
+    Button teamBExtraPointView;
+    Button teamBConversionView;
+    Button teamBFieldGoalView;
+    Button teamBSafetyView;
     int scoreForTeamA = 0;
     int scoreForTeamB = 0;
+    
+    final static String score_for_team_A_state="score_for_team_A_state";
+    final static String score_for_team_B_state="score_for_team_B_state";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +48,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         collegeTwoSpinner = (Spinner) findViewById(R.id.spinner2);
         collegeTwoSpinner.setOnItemSelectedListener(this);
 
+        teamABackgroundView = findViewById(R.id.team_a_background);
+        teamBBackgroundView = findViewById(R.id.team_b_background);
+        teamAScoreView = (TextView) findViewById(R.id.team_a_score);
+        teamBScoreView = (TextView) findViewById(R.id.team_b_score);
+        teamALogoView = (ImageView) findViewById(R.id.team_a_logo);
+        teamBLogoView = (ImageView) findViewById(R.id.team_b_logo);
+        teamATouchdownView = (Button) findViewById(R.id.team_a_touchdown);
+        teamAExtraPointView = (Button) findViewById((R.id.team_a_extra_point));
+        teamAConversionView = (Button) findViewById((R.id.team_a_conversion));
+        teamAFieldGoalView = (Button) findViewById(R.id.team_a_field_goal);
+        teamASafetyView = (Button) findViewById(R.id.team_a_safety);
+        teamBTouchdownView = (Button) findViewById(R.id.team_b_touchdown);
+        teamBExtraPointView = (Button) findViewById((R.id.team_b_extra_point));
+        teamBConversionView = (Button) findViewById((R.id.team_b_conversion));
+        teamBFieldGoalView = (Button) findViewById(R.id.team_b_field_goal);
+        teamBSafetyView = (Button) findViewById(R.id.team_b_safety);
+
         if (savedInstanceState != null) {
-            scoreForTeamA = savedInstanceState.getInt("score_for_team_A_state");
-            scoreForTeamB = savedInstanceState.getInt("score_for_team_B_state");
+            scoreForTeamA = savedInstanceState.getInt(score_for_team_A_state);
+            scoreForTeamB = savedInstanceState.getInt(score_for_team_B_state);
         } else {
             scoreForTeamA = 0; scoreForTeamB = 0;
         }
@@ -43,8 +79,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putInt("score_for_team_A_state", scoreForTeamA);
-        savedInstanceState.putInt("score_for_team_B_state", scoreForTeamB);
+        savedInstanceState.putInt(score_for_team_A_state, scoreForTeamA);
+        savedInstanceState.putInt(score_for_team_B_state, scoreForTeamB);
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -95,8 +131,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
      * Displays the given score for Team A.
      */
     public void displayForTeamA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_score);
-        scoreView.setText(String.valueOf(score));
+        teamAScoreView.setText(String.valueOf(score));
     }
 
     /**
@@ -135,8 +170,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
      * Displays the given score for Team B.
      */
     public void displayForTeamB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_score);
-        scoreView.setText(String.valueOf(score));
+        teamBScoreView.setText(String.valueOf(score));
     }
 
 
@@ -149,575 +183,549 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String teamTwo = (String) collegeTwoSpinner.getSelectedItem();
 
         if (teamOne.equals("Pick a college")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.Pick_a_team_black_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.choose_a_team_home));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.PickATeam_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.PickATeam_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.PickATeam_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.PickATeam_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.PickATeam_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.Pick_a_team_black_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.choose_a_team_home));
+
+            teamATouchdownView.setTextAppearance(this, R.style.PickATeam_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.PickATeam_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.PickATeam_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.PickATeam_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.PickATeam_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("Albany")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.Albany_purple_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.albany_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.Albany_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.Albany_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.Albany_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.Albany_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.Albany_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.Albany_purple_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.albany_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.Albany_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.Albany_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.Albany_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.Albany_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.Albany_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("Delaware")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.delaware_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.delaware_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.Delaware_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.Delaware_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.Delaware_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.Delaware_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.Delaware_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.delaware_blue_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.delaware_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.Delaware_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.Delaware_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.Delaware_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.Delaware_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.Delaware_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("Elon")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.elon_red_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.elon_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.Elon_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.Elon_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.Elon_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.Elon_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.Elon_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.elon_red_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.elon_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.Elon_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.Elon_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.Elon_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.Elon_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.Elon_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("James Madison")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.jmu_purple_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.jmu_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.JMU_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.JMU_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.JMU_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.JMU_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.JMU_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.jmu_purple_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.jmu_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.JMU_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.JMU_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.JMU_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.JMU_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.JMU_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
         }
 
             if (teamOne.equals("Maine")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.maine_black_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.maine_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.Maine_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.Maine_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.Maine_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.Maine_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.Maine_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.maine_black_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.maine_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.Maine_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.Maine_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.Maine_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.Maine_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.Maine_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("New Hampshire")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.nh_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.new_hampshire_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.New_Hampshire_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.New_Hampshire_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.New_Hampshire_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.New_Hampshire_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.New_Hampshire_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.nh_blue_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.new_hampshire_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.New_Hampshire_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.New_Hampshire_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.New_Hampshire_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.New_Hampshire_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.New_Hampshire_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("Rhode Island")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.ri_dark_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.rhode_island_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.Rhode_Island_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.Rhode_Island_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.Rhode_Island_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.Rhode_Island_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.Rhode_Island_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.ri_dark_blue_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.rhode_island_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.Rhode_Island_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.Rhode_Island_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.Rhode_Island_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.Rhode_Island_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.Rhode_Island_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("Richmond")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.richmond_dark_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.richmond_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.Richmond_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.Richmond_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.Richmond_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.Richmond_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.Richmond_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.richmond_dark_blue_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.richmond_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.Richmond_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.Richmond_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.Richmond_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.Richmond_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.Richmond_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("Stony Brook")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.sb_dark_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.stony_brook_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.Stony_Brook_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.Stony_Brook_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.Stony_Brook_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.Stony_Brook_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.Stony_Brook_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.sb_dark_blue_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.stony_brook_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.Stony_Brook_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.Stony_Brook_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.Stony_Brook_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.Stony_Brook_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.Stony_Brook_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("Towson")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.towson_black_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.towson_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.Towson_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.Towson_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.Towson_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.Towson_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.Towson_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.towson_black_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.towson_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.Towson_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.Towson_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.Towson_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.Towson_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.Towson_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("Villanova")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.villanova_dark_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.villanova_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.Villanova_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.Villanova_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.Villanova_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.Villanova_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.Villanova_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.villanova_dark_blue_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.villanova_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.Villanova_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.Villanova_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.Villanova_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.Villanova_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.Villanova_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamOne.equals("William & Mary")) {
-            View background = findViewById(R.id.team_a_background);
-            background.setBackgroundResource(R.color.WM_green_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_a_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.wm_logo));
-            Button b1 = (Button) findViewById(R.id.team_a_touchdown);
-            b1.setTextAppearance(this, R.style.WM_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_a_extra_point);
-            b2.setTextAppearance(this, R.style.WM_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_a_field_goal);
-            b3.setTextAppearance(this, R.style.WM_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_a_safety);
-            b4.setTextAppearance(this, R.style.WM_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_a_conversion);
-            b5.setTextAppearance(this, R.style.WM_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
+            teamABackgroundView.setBackgroundResource(R.color.WM_green_background);
+
+            teamALogoView.setImageDrawable(getResources().getDrawable(R.drawable.wm_logo));
+
+            teamATouchdownView.setTextAppearance(this, R.style.WM_Button);
+            teamATouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
+
+            teamAExtraPointView.setTextAppearance(this, R.style.WM_Button);
+            teamAExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
+
+            teamAFieldGoalView.setTextAppearance(this, R.style.WM_Button);
+            teamAFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
+
+            teamASafetyView.setTextAppearance(this, R.style.WM_Button);
+            teamASafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
+
+            teamAConversionView.setTextAppearance(this, R.style.WM_Button);
+            teamAConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("Pick a college")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.Pick_a_team_black_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.choose_a_team_away));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.PickATeam_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.PickATeam_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.PickATeam_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.PickATeam_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.PickATeam_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.Pick_a_team_black_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.choose_a_team_away));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.PickATeam_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.PickATeam_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.PickATeam_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.PickATeam_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.PickATeam_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Pick_a_team_black1), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("Albany")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.Albany_purple_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.albany_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.Albany_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.Albany_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.Albany_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.Albany_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.Albany_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.Albany_purple_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.albany_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.Albany_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.Albany_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.Albany_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.Albany_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.Albany_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.Albany_purple1), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("Delaware")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.delaware_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.delaware_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.Delaware_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.Delaware_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.Delaware_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.Delaware_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.Delaware_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.delaware_blue_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.delaware_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.Delaware_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.Delaware_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.Delaware_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.Delaware_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.Delaware_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.delaware_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("Elon")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.elon_red_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.elon_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.Elon_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.Elon_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.Elon_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.Elon_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.Elon_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.elon_red_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.elon_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.Elon_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.Elon_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.Elon_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.Elon_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.Elon_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.elon_red), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("James Madison")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.jmu_purple_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.jmu_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.JMU_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.JMU_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.JMU_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.JMU_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.JMU_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.jmu_purple_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.jmu_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.JMU_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.JMU_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.JMU_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.JMU_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.JMU_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.jmu_purple), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("Maine")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.maine_black_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.maine_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.Maine_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.Maine_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.Maine_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.Maine_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.Maine_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.maine_black_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.maine_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.Maine_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.Maine_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.Maine_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.Maine_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.Maine_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.maine_black), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("New Hampshire")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.nh_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.new_hampshire_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.New_Hampshire_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.New_Hampshire_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.New_Hampshire_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.New_Hampshire_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.New_Hampshire_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.nh_blue_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.new_hampshire_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.New_Hampshire_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.New_Hampshire_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.New_Hampshire_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.New_Hampshire_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.New_Hampshire_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.nh_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("Rhode Island")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.ri_dark_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.rhode_island_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.Rhode_Island_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.Rhode_Island_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.Rhode_Island_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.Rhode_Island_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.Rhode_Island_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.ri_dark_blue_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.rhode_island_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.Rhode_Island_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.Rhode_Island_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.Rhode_Island_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.Rhode_Island_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.Rhode_Island_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.ri_dark_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("Richmond")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.richmond_dark_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.richmond_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.Richmond_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.Richmond_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.Richmond_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.Richmond_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.Richmond_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.richmond_dark_blue_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.richmond_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.Richmond_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.Richmond_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.Richmond_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.Richmond_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.Richmond_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.richmond_dark_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("Stony Brook")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.sb_dark_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.stony_brook_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.Stony_Brook_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.Stony_Brook_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.Stony_Brook_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.Stony_Brook_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.Stony_Brook_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.sb_dark_blue_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.stony_brook_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.Stony_Brook_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.Stony_Brook_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.Stony_Brook_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.Stony_Brook_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.Stony_Brook_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.sb_dark_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("Towson")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.towson_black_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.towson_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.Towson_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.Towson_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.Towson_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.Towson_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.Towson_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.towson_black_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.towson_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.Towson_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.Towson_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.Towson_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.Towson_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.Towson_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.towson_black), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("Villanova")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.villanova_dark_blue_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.villanova_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.Villanova_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.Villanova_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.Villanova_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.Villanova_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.Villanova_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.villanova_dark_blue_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.villanova_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.Villanova_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.Villanova_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.Villanova_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.Villanova_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.Villanova_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.villanova_dark_blue), PorterDuff.Mode.MULTIPLY);
         }
 
         if (teamTwo.equals("William & Mary")) {
-            View background = findViewById(R.id.team_b_background);
-            background.setBackgroundResource(R.color.WM_green_background);
-            ImageView iv1 = (ImageView) findViewById(R.id.team_b_logo);
-            iv1.setImageDrawable(getResources().getDrawable(R.drawable.wm_logo));
-            Button b1 = (Button) findViewById(R.id.team_b_touchdown);
-            b1.setTextAppearance(this, R.style.WM_Button);
-            b1.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
-            Button b2 = (Button) findViewById(R.id.team_b_extra_point);
-            b2.setTextAppearance(this, R.style.WM_Button);
-            b2.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
-            Button b3 = (Button) findViewById(R.id.team_b_field_goal);
-            b3.setTextAppearance(this, R.style.WM_Button);
-            b3.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
-            Button b4 = (Button) findViewById(R.id.team_b_safety);
-            b4.setTextAppearance(this, R.style.WM_Button);
-            b4.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
-            Button b5 = (Button) findViewById(R.id.team_b_conversion);
-            b5.setTextAppearance(this, R.style.WM_Button);
-            b5.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
+            teamBBackgroundView.setBackgroundResource(R.color.WM_green_background);
+
+            teamBLogoView.setImageDrawable(getResources().getDrawable(R.drawable.wm_logo));
+
+            teamBTouchdownView.setTextAppearance(this, R.style.WM_Button);
+            teamBTouchdownView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
+
+            teamBExtraPointView.setTextAppearance(this, R.style.WM_Button);
+            teamBExtraPointView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
+
+            teamBFieldGoalView.setTextAppearance(this, R.style.WM_Button);
+            teamBFieldGoalView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
+
+            teamBSafetyView.setTextAppearance(this, R.style.WM_Button);
+            teamBSafetyView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
+
+            teamBConversionView.setTextAppearance(this, R.style.WM_Button);
+            teamBConversionView.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.WM_green1), PorterDuff.Mode.MULTIPLY);
         }
 
 

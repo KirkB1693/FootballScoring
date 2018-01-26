@@ -8,10 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-
+        android:layout_height="wrap_content">
 
 
         <LinearLayout
@@ -32,14 +29,10 @@
 
                 <ImageView
                     android:id="@+id/header_logo"
+                    style="@style/LogoStyle"
                     android:layout_width="@dimen/logo_width"
                     android:layout_height="@dimen/header_logo_height"
-                    android:layout_marginTop="@dimen/logo_top_margin"
-                    android:layout_marginLeft="@dimen/logo_left_margin"
-                    android:layout_marginRight="@dimen/logo_right_margin"
-                    android:layout_marginBottom="@dimen/logo_bottom_margin"
-                    android:layout_gravity="center"
-                    android:src="@drawable/caa_logo"/>
+                    android:src="@drawable/caa_logo" />
 
                 <Spinner
                     android:id="@+id/spinner1"
@@ -53,79 +46,56 @@
 
                 <TextView
                     android:id="@+id/team_a_score"
+                    style="@style/ScoreStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:gravity="center_horizontal"
-                    android:text="@string/initial_score"
-                    android:textColor="@color/score_color"
-                    android:textSize="@dimen/score_text_size" />
+                    android:text="@string/initial_score" />
 
                 <ImageView
                     android:id="@+id/team_a_logo"
+                    style="@style/LogoStyle"
                     android:layout_width="@dimen/logo_width"
                     android:layout_height="@dimen/logo_height"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/logo_bottom_margin"
-                    android:layout_marginLeft="@dimen/logo_left_margin"
-                    android:layout_marginRight="@dimen/logo_right_margin"
-                    android:layout_marginTop="@dimen/logo_top_margin"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
                     app:srcCompat="@drawable/choose_a_team" />
 
                 <Button
                     android:id="@+id/team_a_touchdown"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/button_left_margin"
-                    android:layout_marginRight="@dimen/button_right_margin"
                     android:onClick="plusSixPointsForTeamA"
                     android:text="@string/touchdown" />
 
                 <Button
                     android:id="@+id/team_a_extra_point"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/button_left_margin"
-                    android:layout_marginRight="@dimen/button_right_margin"
-                    android:layout_marginTop="@dimen/button_top_margin"
                     android:onClick="plusOnePointForTeamA"
                     android:text="@string/extra_point" />
 
                 <Button
                     android:id="@+id/team_a_conversion"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/button_left_margin"
-                    android:layout_marginRight="@dimen/button_right_margin"
-                    android:layout_marginTop="@dimen/button_top_margin"
                     android:onClick="plusTwoPointsForTeamA"
                     android:text="@string/conversion" />
 
                 <Button
                     android:id="@+id/team_a_field_goal"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/button_left_margin"
-                    android:layout_marginRight="@dimen/button_right_margin"
-                    android:layout_marginTop="@dimen/button_top_margin"
                     android:onClick="plusThreePointsForTeamA"
                     android:text="@string/field_goal" />
 
                 <Button
                     android:id="@+id/team_a_safety"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/button_bottom_margin"
-                    android:layout_marginLeft="@dimen/button_left_margin"
-                    android:layout_marginRight="@dimen/button_right_margin"
-                    android:layout_marginTop="@dimen/button_top_margin"
                     android:onClick="plusTwoPointsForTeamA"
                     android:text="@string/safety" />
 
@@ -143,24 +113,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/Pick_a_team_black_background"
-
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/header"
+                    style="@style/HeaderTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/header_text_height"
-                    android:gravity="center"
-                    android:layout_marginTop="@dimen/logo_top_margin"
-                    android:layout_marginLeft="@dimen/header_left_margin"
-                    android:layout_marginRight="@dimen/header_right_margin"
-                    android:layout_marginBottom="@dimen/logo_bottom_margin"
-                    android:layout_gravity="center"
-                    android:text="@string/header"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:textColor="@color/header_text_color"
-                    android:textSize="@dimen/header_text_size" />
+                    android:text="@string/header" />
 
                 <Spinner
                     android:id="@+id/spinner2"
@@ -173,79 +133,57 @@
 
                 <TextView
                     android:id="@+id/team_b_score"
+                    style="@style/ScoreStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:gravity="center_horizontal"
-                    android:text="@string/initial_score"
-                    android:textColor="@color/score_color"
-                    android:textSize="@dimen/score_text_size" />
+                    android:text="@string/initial_score" />
 
                 <ImageView
                     android:id="@+id/team_b_logo"
+                    style="@style/LogoStyle"
                     android:layout_width="@dimen/logo_width"
                     android:layout_height="@dimen/logo_height"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/logo_bottom_margin"
-                    android:layout_marginLeft="@dimen/logo_left_margin"
-                    android:layout_marginRight="@dimen/logo_right_margin"
-                    android:layout_marginTop="@dimen/logo_top_margin"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
                     app:srcCompat="@drawable/choose_a_team" />
 
                 <Button
                     android:id="@+id/team_b_touchdown"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/button_left_margin"
-                    android:layout_marginRight="@dimen/button_right_margin"
                     android:onClick="plusSixPointsForTeamB"
                     android:text="@string/touchdown" />
 
                 <Button
                     android:id="@+id/team_b_extra_point"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/button_left_margin"
-                    android:layout_marginRight="@dimen/button_right_margin"
-                    android:layout_marginTop="@dimen/button_top_margin"
+
                     android:onClick="plusOnePointForTeamB"
                     android:text="@string/extra_point" />
 
                 <Button
                     android:id="@+id/team_b_conversion"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/button_left_margin"
-                    android:layout_marginRight="@dimen/button_right_margin"
-                    android:layout_marginTop="@dimen/button_top_margin"
                     android:onClick="plusTwoPointsForTeamB"
                     android:text="@string/conversion" />
 
                 <Button
                     android:id="@+id/team_b_field_goal"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/button_left_margin"
-                    android:layout_marginRight="@dimen/button_right_margin"
-                    android:layout_marginTop="@dimen/button_top_margin"
                     android:onClick="plusThreePointsForTeamB"
                     android:text="@string/field_goal" />
 
                 <Button
                     android:id="@+id/team_b_safety"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/button_bottom_margin"
-                    android:layout_marginLeft="@dimen/button_left_margin"
-                    android:layout_marginRight="@dimen/button_right_margin"
-                    android:layout_marginTop="@dimen/button_top_margin"
                     android:onClick="plusTwoPointsForTeamB"
                     android:text="@string/safety" />
 
@@ -255,12 +193,9 @@
 
         <Button
             android:id="@+id/reset_button"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/ResetButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="8dp"
             android:onClick="resetScoreForBothTeams"
             android:text="@string/reset_score"
             android:theme="@style/PickATeam.Button" />

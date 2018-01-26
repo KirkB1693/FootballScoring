@@ -4,7 +4,7 @@
     <dimen name="divider_width">1dp</dimen>
     <dimen name="logo_height">125dp</dimen>
     <dimen name="logo_left_margin">24dp</dimen>
-    <dimen name="logo_bottom_margin">16dp</dimen>
+    <dimen name="logo_bottom_margin">8dp</dimen>
     <dimen name="logo_top_margin">8dp</dimen>
     <dimen name="logo_right_margin">24dp</dimen>
     <dimen name="button_left_margin">24dp</dimen>
@@ -17,4 +17,5 @@
     <dimen name="header_text_height">60dp</dimen>
     <dimen name="header_left_margin">8dp</dimen>
     <dimen name="header_right_margin">8dp</dimen>
+    <dimen name="reset_button_bottom_margin">8dp</dimen>
 </resources>

@@ -63,4 +63,41 @@
         <item name="android:textColor">@color/score_color</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:layout_marginLeft">@dimen/button_left_margin</item>
+        <item name="android:layout_marginRight">@dimen/button_right_margin</item>
+        <item name="android:layout_marginTop">@dimen/button_top_margin</item>
+    </style>
+    <style name="ResetButtonStyle" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginBottom">@dimen/reset_button_bottom_margin</item>
+    </style>
+    <style name="LogoStyle">
+        <item name="android:layout_marginBottom">@dimen/logo_bottom_margin</item>
+        <item name="android:layout_marginLeft">@dimen/logo_left_margin</item>
+        <item name="android:layout_marginRight">@dimen/logo_right_margin</item>
+        <item name="android:layout_marginTop">@dimen/logo_top_margin</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+    <style name="ScoreStyle">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/score_color</item>
+        <item name="android:textSize">@dimen/score_text_size</item>
+    </style>
+    <style name="HeaderTextStyle">
+        <item name="android:layout_marginBottom">@dimen/logo_bottom_margin</item>
+        <item name="android:layout_marginLeft">@dimen/header_left_margin</item>
+        <item name="android:layout_marginRight">@dimen/header_right_margin</item>
+        <item name="android:layout_marginTop">@dimen/logo_top_margin</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/header_text_color</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
